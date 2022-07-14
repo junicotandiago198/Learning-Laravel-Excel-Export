@@ -9,17 +9,15 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class UsersExport implements FromView
+class UsersExport implements FromCollection
 {
     use Exportable;
     
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function view(): View
+    public function collection()
     {
-        return view('exports.users', [
-            'users' => User::all()
-        ]);
+        return User::all();
     }
 }
