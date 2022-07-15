@@ -20,7 +20,7 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithMapping
     */
     public function collection()
     {
-        return User::all();
+        return User::with('address')->get();
     }
 
     public function map($user): array
@@ -28,6 +28,7 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithMapping
         return [
             $user->id,
             $user->email,
+            $user->address->country,
             $user->created_at
         ];
     }
